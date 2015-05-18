@@ -3,7 +3,7 @@
 #   deploy (hash of deploy attributes)
 #   env (hash of custom environment settings)
 # 
-# Notifies the restart resource defined in opsworks-cookbooks/rails/providers/configuration.rb
+# Notifies a "restart Rails app <name> for custom env" resource.
 
 define :custom_env_template do
   
@@ -13,7 +13,7 @@ define :custom_env_template do
     group params[:deploy][:group]
     mode "0660"
     variables :env => params[:env]
-    notifies :run, resources(:execute => "Restart Rails App #{params[:application]}")
+    notifies :run, resources(:execute => "restart Rails app #{params[:application]} for custom env")
 
     only_if do
       File.exists?("#{params[:deploy][:deploy_to]}/shared/config")
