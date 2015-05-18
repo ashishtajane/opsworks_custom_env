@@ -3,7 +3,7 @@
 
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'rails'
-    Chef::Log.debug("Skipping opsworks_custom_env::restart_command for application #{application} as it is not a rails app")
+    Chef::Log.debug("Skipping opsworks_custom_env::write_config for application #{application} as it is not a rails app")
     next
   end
   
@@ -12,5 +12,4 @@ node[:deploy].each do |application, deploy|
     deploy deploy
     env node[:custom_env][application]
   end
-  
 end
