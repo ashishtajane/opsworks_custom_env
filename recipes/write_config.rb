@@ -1,6 +1,8 @@
 # Set up app's custom configuration in the environment.
 # See https://forums.aws.amazon.com/thread.jspa?threadID=118107
 
+include_recipe "rails"
+
 node[:deploy].each do |application, deploy|
   if deploy[:application_type] != 'rails'
     Chef::Log.debug("Skipping opsworks_custom_env::write_config for application #{application} as it is not a rails app")
