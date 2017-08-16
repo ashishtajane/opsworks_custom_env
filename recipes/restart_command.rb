@@ -6,7 +6,7 @@ node[:deploy].each do |application, deploy|
 
   execute "restart Rails app #{application} for custom env" do
     cwd deploy[:current_path]
-    command node[:opsworks][:rails_stack][:restart_command]
+    command deploy[:restart_command]
 
     action :nothing
   end
